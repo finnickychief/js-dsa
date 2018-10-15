@@ -1,0 +1,44 @@
+Data structure:
+  A way to structure data to make it more usable within our programs. 
+
+Ones we've seen:
+  String
+  Number
+  Boolean
+  Array
+  Object
+
+Ones some of us have heard of:
+  Trees
+  Maps
+
+
+Maps:
+  A data structure that stores data in key : value pairs. In javascript, these are easily modeled with objects.
+
+  Items within this type of collection
+    key: The identifer for a value within the collection
+    value: What is being stored with the key
+
+  {
+    key: 'Hello',
+    key2: 'World'
+  }
+
+Common operations for a map:
+  Add/Insert - Associates a key/value pair to the collection
+  Reassign - Replace the value in an existing key/value pair. 
+  Remove/Delete - Removes(disassociates) a key/value pair from the collection. 
+  Lookup - Finds a value associated with a key. 
+
+Note on using objects as maps:
+  In general computer science theory a map can have any other type of data structure as keys - In javascript we are limited to strings and integers. 
+
+
+
+Challenge 1:
+  Note from blackboard:
+    We identified 2 separate operations for our algorithm:
+      If the character is not in our map already: Add it
+      If the character is in the map: Increment the value associated with that key
+
