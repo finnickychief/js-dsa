@@ -71,3 +71,19 @@ function quarantineElements(arr, badElement) {
   return arr;
 }
 quarantineElements(arr, 2);
+
+// Problem 4
+
+function hasDuplicate(arr) {
+  let map = {}; // Create the map we are going to use as a set
+  for (let i = 0; i < arr.legnth; i++) {
+    let num = arr[i];
+    // See if the map contains the item
+    if (map[num]) {
+      return true; // We have found a duplicate, return true
+    } else {
+      map[num] = 1; // Set the val equal to a truthy value
+    }
+  }
+  return false; // If we have not foun any duplicates, return false.
+}
