@@ -114,7 +114,7 @@ function findMissing(arr) {
   for (let i = 0; i < arr.length + 1; i++) {
     completeMap[i] = true;
   }
-  for (let i = 0; i < arr.length + 1; i++) {
+  for (let i = 0; i < arr.length; i++) {
     incompleteMap[arr[i]] = true;
   }
 
@@ -155,4 +155,31 @@ function findMissing(arr) {
   }
   // Return the difference
   return completeSum - incompleteSum;
+}
+
+// Challenge 6:
+// indexOf
+function findDistance(arr, item1, item2) {
+  let firstIndex = arr.indexOf(item1);
+  let secondIndex = arr.indexOf(item2);
+  return Math.abs(firstIndex - secondIndex);
+}
+
+// Searching for the item(not allowed to use indexOf)
+function findDistance(arr, item1, item2) {
+  let firstIndex = -1,
+    secondIndex = -1;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === item1) {
+      if (firstIndex === -1) {
+        firstIndex = i;
+      }
+    }
+    if (arr[i] === item2) {
+      if (secondIndex === -1) {
+        secondIndex = i;
+      }
+    }
+  }
+  return Math.abs(firstIndex - secondIndex);
 }
