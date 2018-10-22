@@ -122,3 +122,98 @@ function lastLength2(str) {
   }
 }
 lastLength2('It is a good day');
+
+// Challenge 5
+
+function missingCloses(str) {
+  // Generate map with our input
+  let charMap = generateMap(str);
+
+  // Generate ouput string
+  // Out of order, but proper amounts:
+  let output = '';
+  // let parens = charMap['('] - (charMap[')'] ? charMap[')'] : 0);
+  // let bracks = charMap['['] - (charMap[']'] ? charMap[']'] : 0);
+  // let braces = charMap['{'] - (charMap['}'] ? charMap['}'] : 0);
+  // console.log(charMap)
+  // if(parens > 0){
+  //   output += ')' + parens;
+  // }
+  // if(bracks > 0){
+  //   output += ']' + bracks;
+  // }
+  // if(braces > 0){
+  //   output += '}' + braces;
+  // }
+
+  // Find differences
+  let diffMap = {};
+  diffMap['('] = charMap['('] - (charMap[')'] ? charMap[')'] : 0);
+  diffMap['['] = charMap['['] - (charMap[']'] ? charMap[']'] : 0);
+  diffMap['{'] = charMap['{'] - (charMap['}'] ? charMap['}'] : 0);
+
+  // Build the corresponding relationship between opening and closing pieces
+  let corresponding = {};
+  corresponding['('] = ')';
+  corresponding['['] = ']';
+  corresponding['{'] = '}';
+
+  // Generate string in right order(the order that the opening tags were input)
+  let keyAry = Object.keys(charMap);
+  // Loop through all keys
+  for (let key of keyAry) {
+    // Check if our key is an opening tag
+    if ('([{'.includes(key)) {
+      // Find how many more closing tags you need for that opening tag
+      if (diffMap[key] > 0) {
+        output += `${corresponding[key]}${diffMap[key]}`;
+      }
+    }
+  }
+
+  return output;
+}
+
+function generateMap(input) {
+  let map = {};
+  for (let i = 0; i < input.length; i++) {
+    let currItem = input[i];
+
+    map[currItem] ? map[currItem]++ : (map[currItem] = 1);
+  }
+  return map;
+}
+
+missingCloses('{}(([[])');
+
+// Andrew's solution
+
+const paraFinder = parens => {
+  let paraLegend = {
+    '(': [0, ')'],
+    ')': [0, '('],
+    '{': [0, '}'],
+    '}': [0, '{'],
+    '[': [0, ']'],
+    ']': [0, '[']
+  };
+
+  // (() (: -1, ): 0
+
+  for (char of parens) {
+    if (paraLegend[char]) {
+      paraLegend[char][0]--;
+      paraLegend[paraLegend[char][1]][0]++;
+    }
+  }
+  console.log(paraLegend);
+  return Object.keys(paraLegend).reduce((acc, char) => {
+    paraLegend[char][0] > 0 ? (acc += `${char + paraLegend[char][0]}`) : null;
+    return acc;
+  }, '');
+};
+
+console.log('(ab()', paraFinder('(ab()'));
+console.log('(()))', paraFinder('(()))'));
+console.log('((({{[', paraFinder('((({{['));
+console.log('{}(([[])', paraFinder('{}(([[])'));
