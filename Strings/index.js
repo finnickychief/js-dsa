@@ -217,3 +217,34 @@ console.log('(ab()', paraFinder('(ab()'));
 console.log('(()))', paraFinder('(()))'));
 console.log('((({{[', paraFinder('((({{['));
 console.log('{}(([[])', paraFinder('{}(([[])'));
+
+// Fahad's solution
+const findMissingPunc = str => {
+  let out = '';
+
+  let op = 0,
+    cp = 0,
+    oc = 0,
+    cc = 0,
+    ob = 0,
+    cb = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] == '(') op++;
+    if (str[i] == ')') cp++;
+    if (str[i] == '{') oc++;
+    if (str[i] == '}') cc++;
+    if (str[i] == '[') ob++;
+    if (str[i] == ']') cb++;
+  }
+
+  if (op > cp) out += ')' + (op - cp);
+  if (oc > cc) out += '}' + (oc - cc);
+  if (ob > cb) out += ']' + (ob - cb);
+
+  return out;
+};
+
+// 5! = 5*4*3*2*1
+
+// 10! = 10*9*8*7*6*5*4*3*2*1
