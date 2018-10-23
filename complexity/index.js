@@ -166,3 +166,158 @@ function sumTwo(N) {
 
 console.log(sumOne(100));
 console.log(sumTwo(100));
+
+// N^2 is better than 10N so long as N is less than 10
+
+// Algorithm analysis of past problems:
+/*
+  Maps/sets:
+
+  createCharMap:
+  3N: 3 operations in our for loop, and our loop runs through every item in the string
+
+  2: A variable declaration, and a return statement
+
+  O(3N+2) -> First rule: Find dominant term: O(3N) -> Second rule: remove constants: O(N)
+
+  split/reduce:
+    Split: O(N)
+    Reduce: O(N)
+    Return: O(1)
+
+    O(2N + 1)
+    First rule: Find dominant term
+    O(2N)
+    Second rule: remove constants
+    O(N)
+
+
+
+  Map problem 2:
+    Count vowels
+
+    Create a static array: 1
+    Create count: 1
+
+    Loops: 10 times
+    O(10 * 3)
+    Return statement: 1
+    O(3+30) -> O(1)
+
+
+    Challenge 3
+    Index map
+
+    Go through all items in the string
+    create map: 1
+    for loop: N * 3
+    return: 1
+
+    O(3N+2)
+    First rule:
+      O(3N)
+    Second rule:
+      O(N)
+
+
+    Challenge 4:
+
+
+  Tuesday 10-23 problems:
+
+  Step 1: Figure out the overall complexity
+  Step 2: Find the dominant term(s)
+  Step 3: Remove the constants
+
+  1: 5N + 12 -> 5N -> O(N)
+
+  2: 0.002N^2 + sqrt(N) + 42 -> 0.002N^2 - > O(N^2)
+
+  3: 78N^1.5 + 1800N + 19 -> 78N^1.5 -> O(N^1.5)
+
+  4: 4N^3 + 2K^2 + 8M -> 4N^3 + 2K^2 + 8M -> 
+  O(N^3 + K^2 + M)
+
+  5: 17N! + 2^N -> 17N! -> O(N!)
+
+  
+  Sample for example 1:
+  function example1(N){
+    // code for 6 operations
+    for(let i = 0; i < N; i++){
+      // code for 5 operations
+    }
+    // code for 6 operations
+  }
+
+  Sample for example 2:
+  function example2(N) {
+
+    for(let i = 0; i <= N*N; i++){
+      if(i % 500 === 0){ // Once every 500 items = .002% of the time
+        // code for 1 operation
+      }
+    }
+    for(let i = 0; i < N**0.5; i++){
+      // code for 1 operation
+    }
+    // code for 42 operations
+  }
+
+  Sample for example 3:
+  function example3(N){
+    for(let i = 0; i < N**1.5; i++){
+      // code for 78 operations
+    }
+    for(let i = 0; i < N; i++){
+      // code for 1800 operations
+    }
+    //code for 19 operations
+  }
+
+
+  Sample for example 4:
+  function example4(N, K, M){
+    for(let i = 0; i < N**3; i++){
+      // code for 4 operations
+    }
+    
+    for(let i = 0; i < K**2; i++){
+      // code for 2 operations
+    }
+    
+    for(let i = 0; i < M; i++){
+      // code for 8 operations
+    }
+  }
+
+  let numOperations = 0;
+  Same for example 5:
+  function example5(N){
+
+    let val = findFactorial(N)
+
+    for(let i = 0; i < val; i++){
+      // code for 17 operations
+    }
+
+    let ary = [1,2];
+
+    for(let i = 0; i < N; i++){
+      ary = ary.concat(ary);
+    }
+
+  }
+
+  function findFactorial(n){
+    if(n === 1){
+      return 1;
+    }else{
+      // 17 operations
+      numOperations++;
+      console.log(numOperations)
+      return n * findFactorial(n-1);
+    }
+  }
+
+*/

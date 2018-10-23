@@ -164,6 +164,8 @@
 
       function createIndexMap(string){
         let indexMap = {};
+
+       
         
         for(let i = 0; i < string.length; i++){
           let char = string[i]; // Get current character
