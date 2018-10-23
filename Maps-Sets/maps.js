@@ -243,6 +243,8 @@ Example: ‘Hello’ should return [‘l’]
     let result = [];
     let seenChars = [];
 
+    
+
     for(let i = 0; i < str.length; i++){
       let currChar = str[i];
       if(seenChars.includes(currChar) && !result.includes(currChar)){

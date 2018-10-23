@@ -222,6 +222,41 @@ console.log(sumTwo(100));
 
     Challenge 4:
 
+    1+ N + N, 2N + 1 -> 2N -> O(N)
+
+
+    Challenge 5: 
+
+    3 + 2N -> 2N -> O(N)
+
+      Analyze the complexity of the array problems
+
+    Challenge 6:
+      3 + 2N * 2N
+
+      4N^2 + 3 -> 4N^2
+      O(N^2)
+
+  Arrays:
+
+    Challenge 1:
+
+      Iterative: N*M where N isthe length of the array, and M is the number of places to rotate
+      Slice+Concat: N where N is the length of the array, O(1) is also fine because 
+
+    Challenge 2:
+      4 + 3N -> 3N -> O(N)
+
+    Challenge 3: 
+      2(return + triage push) + N(for loop) * (2N + 2)(includes/splice + push/decrement)
+      2N^2 + 2N + 2 -> 2N^2 -> O(N^2)
+
+    Challenge 4:
+      2+2N -> 2N -> O(N)
+
+
+
+
 
   Tuesday 10-23 problems:
 
@@ -306,7 +341,6 @@ console.log(sumTwo(100));
     for(let i = 0; i < N; i++){
       ary = ary.concat(ary);
     }
-
   }
 
   function findFactorial(n){
