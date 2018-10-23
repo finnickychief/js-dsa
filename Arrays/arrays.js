@@ -76,7 +76,7 @@ quarantineElements(arr, 2);
 
 function hasDuplicate(arr) {
   let map = {}; // Create the map we are going to use as a set
-  for (let i = 0; i < arr.legnth; i++) {
+  for (let i = 0; i < arr.length; i++) {
     let num = arr[i];
     // See if the map contains the item
     if (map[num]) {
