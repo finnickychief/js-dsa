@@ -242,7 +242,7 @@ console.log(sumTwo(100));
     Challenge 1:
 
       Iterative: N*M where N isthe length of the array, and M is the number of places to rotate
-      Slice+Concat: N where N is the length of the array, O(1) is also fine because 
+      Slice+Concat: N where N is the length of the array, O(1) is also fine as an answer for the moment
 
     Challenge 2:
       4 + 3N -> 3N -> O(N)
@@ -254,8 +254,16 @@ console.log(sumTwo(100));
     Challenge 4:
       2+2N -> 2N -> O(N)
 
+    Challenge 5:
 
+      Solution 1: NlogN + N -> O(NlogN)
+      Solution 2: 3N -> O(N)
+      Solution 3: N^2(includes within for-loop) -> O(N^2)
+      Solution 4: 2N + 3 -> 2N -> O(N)
 
+    Challenge 6: 
+      Solution 1: 2N + 1 -> 2N -> O(N)
+      Solution 2: 2N + 3 -> 2N -> O(N)
 
 
   Tuesday 10-23 problems:
