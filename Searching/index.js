@@ -183,5 +183,58 @@ function jumpSearch2(arr, item) {
   Binary Search
 
 
+    Algorithm:
+      Start in the middle
+        Base case for recursive binary search: If there is nothing left in the part you *should* search next, you know it doesn't exist
+        
+        If you found the item, return the index
+        If the item is less than the item in the middle, search the left half of the array
+        If the item is greater than the item in the middle, search the right half of the array
+
+
+
 
 */
+
+/*
+  Recursion:
+    When a function calls itself
+
+    Goes forever unless you include a base case
+
+    Base cases are the instruction telling your function when to stop.
+
+
+
+
+*/
+
+function recursionExample(n) {
+  console.log(n);
+
+  setTimeout(() => {
+    if (n === 0) {
+      console.log('Blast off');
+      return; // Break out of the function
+    }
+    recursionExample(n - 1);
+  }, 1000);
+}
+recursionExample(10);
+
+// Recursively generate a factorial number
+function factorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+
+  // Find the answer
+  return n * factorial(n - 1);
+}
+
+function iterativeFactorial(n) {
+  let val = 1;
+  for (let i = 1; i <= n; i++) {
+    val *= i;
+  }
+}
