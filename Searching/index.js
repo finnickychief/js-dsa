@@ -123,31 +123,23 @@ console.log(ary);
 function jumpSearch(arr, item) {
   let jumpSize = Math.floor(Math.sqrt(arr.length));
 
+  // Go until you reach one jump past the end of the array
   for (let i = 0; i < arr.length + jumpSize; i += jumpSize) {
+    // If you pass the item, or the end of the array, start walking backwards/decrementing
     if (arr[i] >= item || i >= arr.length) {
+      // Find spot to stop decrementing
       let lastJump = i - jumpSize;
-      console.log(
-        `We're in the right neighborhood, jumping backwards now, starting at ${i} until we reach ${lastJump}.`
-      );
+      // Decrement until you find the item or go too far.
       while (i > lastJump) {
         if (arr[i] === item) {
-          console.log(`Found item at ${i}`);
           return i;
         } else {
-          console.log(
-            `Did not find item at ${i}, value: ${arr[i]}, decrementing now.`
-          );
           i--;
         }
       }
-
-      console.log(
-        `We've reached the final spot it is possible for the item to be in, so the item does not exist in our array.`
-      );
-
+      // If you haven't found the item, return -1
       return -1;
     }
-    console.log(`Current item is ${arr[i]}, we need to jump ahead.`);
   }
 
   return -1;
