@@ -111,14 +111,83 @@ console.log(ary);
     When you have a sorted array, you can skip or 'jump' over a number of items until you find the one you want.
 
       Start at front
-        While you have not found the item, jump a number of items equal to the square root of the array's length
+        While you have not found the item, jump a number of items equal to the floor of the square root of the array's length
           When you pass where the item should be, backtrack to the spot you just jumped from
             If you find the item, return the index
             If you reach the spot you jumped from, you have not found the item so return -1
 
 
 
+*/
 
+function jumpSearch(arr, item) {
+  let jumpSize = Math.floor(Math.sqrt(arr.length));
+
+  for (let i = 0; i < arr.length + jumpSize; i += jumpSize) {
+    if (arr[i] >= item || i >= arr.length) {
+      let lastJump = i - jumpSize;
+      console.log(
+        `We're in the right neighborhood, jumping backwards now, starting at ${i} until we reach ${lastJump}.`
+      );
+      while (i > lastJump) {
+        if (arr[i] === item) {
+          console.log(`Found item at ${i}`);
+          return i;
+        } else {
+          console.log(
+            `Did not find item at ${i}, value: ${arr[i]}, decrementing now.`
+          );
+          i--;
+        }
+      }
+
+      console.log(
+        `We've reached the final spot it is possible for the item to be in, so the item does not exist in our array.`
+      );
+
+      return -1;
+    }
+    console.log(`Current item is ${arr[i]}, we need to jump ahead.`);
+  }
+
+  return -1;
+}
+
+let arr = [];
+for (let i = 0; i < 100; i++) {
+  arr.push(Math.floor(Math.random() * 1000));
+}
+arr.sort((a, b) => a - b);
+// jumpSearch([2, 8, 16, 30, 40, 60, 70, 80, 90, 100], 64);
+
+function jumpSearch2(arr, item) {
+  let jumpSize = Math.floor(Math.sqrt(arr.length));
+  let i = 0;
+
+  while (true) {
+    if (i > arr.length) {
+      while (arr[i] >= item || arr[i] === undefined) {
+        i--;
+        if (arr[i] === item) return i;
+      }
+      return -1;
+    } // Jump out of the function if we've reached the end of the array
+
+    if (arr[i] >= item) {
+      // Start backtracking when we've gone past the item
+
+      while (arr[i] >= item) {
+        i--;
+        if (arr[i] === item) return i;
+      }
+      return -1;
+    }
+
+    i += jumpSize;
+  }
+}
+
+/*
   Binary Search
 
 
