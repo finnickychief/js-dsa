@@ -105,3 +105,22 @@ function bubbleSort(arr) {
 let ary = [7, 4, 9, 5, 2, 3, 8];
 bubbleSort(ary);
 console.log(ary);
+
+/*
+  Jump Search
+    When you have a sorted array, you can skip or 'jump' over a number of items until you find the one you want.
+
+      Start at front
+        While you have not found the item, jump a number of items equal to the square root of the array's length
+          When you pass where the item should be, backtrack to the spot you just jumped from
+            If you find the item, return the index
+            If you reach the spot you jumped from, you have not found the item so return -1
+
+
+
+
+  Binary Search
+
+
+
+*/

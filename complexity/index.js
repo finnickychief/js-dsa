@@ -266,6 +266,123 @@ console.log(sumTwo(100));
       Solution 2: 2N + 3 -> 2N -> O(N)
 
 
+  Strings:
+    Challenge 1
+      Solution 1: 
+        Inside loop(multiply by N):
+          3 - Let/if/increment 
+          3N - Two slice methods/concat
+        
+
+        1 - Return statement
+
+        4N + 3N^2 + 1 -> 3N^2 -> O(N^2)
+
+      Solution 2:
+        Inside loop:
+          1 - if statement
+          N - one of two concats
+
+      2 - let/return
+
+      N^2 + N + 2 -> N^2 -> O(N^2)
+
+    Challenge 2:
+      Solution:
+        Inside for loop(multiply by N where N is the length of the entire string):
+          K - slice where K is the length of the item we are looking for
+
+        3N - 2 slices + concat, Inside the if statement will only run once, because we return out of the function at the end
+    
+        N*K + 3N -> N*K -> O(NK)
+
+    
+    Challenge 3: 
+      Solution 1:
+        In the loop(multiply all inside by N):
+          2 - successful if statement
+          2 - Failed if statement comparison/ increment
+          N - Concat in else
+
+          N + 2(only one of the if/else will ever happen)
+
+        3 - Two variables + return
+
+        N^2 + 2N + 3 -> N^2 -> O(N^2) (at worst: in this case most of the time it will perform better)
+
+      Solution 2:
+        In the loop:
+          2N - While loop/concat
+          2 - i/j increment/reset
+          2N^2 + 2N
+        2 - Var / return
+
+        2N^2 + 2N + 2 -> 2N^2 -> O(N^2)
+
+      
+    Challenge 4:
+      Solution 1:  
+        In the loop
+          2 - Comparison + variable reset
+          2N
+
+        2 - variable + return
+
+        2N + 2 -> 2N -> O(N)
+      
+      Solution 2:
+        In the loop(this loop only runs for the length of the last word)
+          1 - For comparison
+          K
+
+        1 - return
+
+        K + 1 -> K -> O(K) (Where K is the length of the last word)
+
+    Challenge 5:
+      Constants:
+        N - generateMap
+        11 - Variables/Return
+
+      In the loop:
+        3 - Includes
+        2 - Second if statement/operation(we know how long the concat can be, so we treat it as constant
+        5N
+
+      6N + 11 -> 6N -> O(N)
+
+      Fahad's solution:
+          Constants:
+            7 - Variables
+            3 - Ifs/assignments
+            1 - Return
+            11
+
+          For loop:
+            6 - ifs
+            1 - Only one if will hit, so only one increment will happen
+            7N
+          7N + 11 -> 7N -> O(N)
+
+      Andrew's solution:
+          For loop:
+            3 - Comparison + 2 operations
+            3N
+
+          Constants:
+            6 - Object declaration
+            6 - Reduce
+            1 - Keys
+            13
+
+          3N + 13 -> 3N -> O(N)
+
+
+
+
+
+
+
   Tuesday 10-23 problems:
 
   Step 1: Figure out the overall complexity
