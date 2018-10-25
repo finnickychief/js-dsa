@@ -138,7 +138,6 @@ function jumpSearch(arr, item) {
         }
       }
       // If you haven't found the item, return -1
-      return -1;
     }
   }
 
@@ -237,4 +236,57 @@ function iterativeFactorial(n) {
   for (let i = 1; i <= n; i++) {
     val *= i;
   }
+
+  return val;
 }
+
+/*
+  Check is a string is a palindrome, using recursion
+  
+
+*/
+
+function checkPalindrome(str) {
+  for (let i = 0; i <= Math.floor(str.length / 2); i++) {
+    if (str[i] !== str[str.length - i - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkPalindromeTwo(str) {
+  let i = 0;
+  let j = str.length - 1;
+
+  while (j > i) {
+    if (str[i] !== str[j]) {
+      return false;
+    }
+    i++;
+    j--;
+  }
+  return true;
+}
+
+function checkPalindromeRecursive(str, i = 0, j = str.length) {
+  if (typeof str !== 'string') {
+    return false;
+  }
+
+  return recursivePalindrome(str, 0, str.length - 1);
+}
+
+function recursivePalindrome(str, i = 0, j = str.length - 1) {
+  if (j <= i) {
+    return true;
+  } else if (str[i] !== str[j]) {
+    return false;
+  }
+
+  return recursivePalindrome(str, i + 1, j - 1);
+}
+
+console.log(recursivePalindrome('racecar'));
+console.log(recursivePalindrome('toot'));
+console.log(checkPalindromeRecursive('hello'));
