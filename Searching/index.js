@@ -471,3 +471,36 @@ function badFib(n) {
 }
 badFib(20);
 console.log(numOps);
+
+/*
+ * HINT: 
+ *  USE A WHILE LOOP AND 2 INDEXES
+ * 
+ * 
+ * 
+ */
+
+// Merge sort:
+
+// Function to merge two sorted arrays:
+function merge(arr1, arr2) {
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let newArray = [];
+  while (leftIndex < arr1.length && rightIndex < arr2.length) {
+    if (arr1[leftIndex] < arr2[rightIndex]) {
+      newArray.push(arr1[leftIndex]);
+      leftIndex++;
+    } else {
+      newArray.push(arr2[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return [...newArray, ...arr1.slice(leftIndex), ...arr2.slice(rightIndex)];
+}
+
+let arr1 = [1, 3, 5, 7, 9];
+let arr2 = [2, 4, 6, 8, 10];
+
+merge(arr1, arr2);
