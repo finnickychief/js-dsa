@@ -182,13 +182,68 @@ function jumpSearch2(arr, item) {
   Binary Search
 
 
-    Algorithm:
-      Start in the middle
-        Base case for recursive binary search: If there is nothing left in the part you *should* search next, you know it doesn't exist
-        
-        If you found the item, return the index
-        If the item is less than the item in the middle, search the left half of the array
-        If the item is greater than the item in the middle, search the right half of the array
+  
+  Step one: Just determine if the item in the middle of an array is the one we're looking for. 
+  If it is, return the middle index, else, return -1;
+
+
+
+    When searching the portion we care about:
+      1 - Start in the middle((Average of left and right boundaries))
+        If we found the item, return the index
+*/
+
+function binSearchStart(arr, item) {
+  return binarySearch(arr, item, 0, arr.length - 1);
+}
+
+function binarySearch(arr, item, leftBound, rightBound) {}
+
+/*
+
+
+      2-
+        If the item is in the left half, search only that portion of the array
+          To search the left half of array, you use the left boundary and the midpoint - The midpoint becomes the new right boundary
+
+      3- 
+        If the item is in the right half, search only that portion of the array
+          To search right half of array, you use the midpoint and the right boundary - The midpoint becomes the new left boundary
+
+
+
+
+
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 
+26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 
+72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 
+95, 96, 97, 98, 99, 100]
+
+
+Steps for the above array when searching for 14:
+
+Look at item 50(length(right boundary) / 2), determine we need to go left
+Set the new left boundary as 0, and set the new right boundary as the midpoint
+
+Look at item 25(right boundary / 2), determine we need to go left
+Set new left boundary as 0, set new right boundary as 25
+
+Look at item 12(25/2), determine we need to go right
+Set new left boundary as 12(midpoint), set right boundary as 25
+
+Look at item in middle((12+25)/2, 18), determine we need to go left
+set left boundary as 12(current left), set right boundary as 18(current midpoint)
+
+
+
+
+
+
+
+
+
 
 
 
