@@ -197,8 +197,47 @@ function binSearchStart(arr, item) {
   return binarySearch(arr, item, 0, arr.length - 1);
 }
 
-function binarySearch(arr, item, leftBound, rightBound) {}
+function binarySearch(arr, item, leftBound = 0, rightBound = arr.length - 1) {
+  let midPoint = Math.floor((leftBound + rightBound) / 2);
+  console.log(
+    `Checking between ${leftBound} and ${rightBound}, current middle item is ${
+      arr[midPoint]
+    }`
+  );
 
+  if (rightBound < leftBound) {
+    console.log(`Didn't find it this try :(`);
+    return -1;
+  }
+
+  if (arr[midPoint] === item) {
+    console.log(`We found ${item} at ${midPoint}!`);
+    return midPoint;
+  } else {
+    if (item < arr[midPoint]) {
+      // Check the left half
+      console.log(
+        `The item we're looking for should be to the left, going left!`
+      );
+      return binarySearch(arr, item, leftBound, midPoint - 1);
+    }
+    if (arr[midPoint] < item) {
+      // Check the right half
+      console.log(
+        `The item we're looking for should be to the right, going right!`
+      );
+      return binarySearch(arr, item, midPoint + 1, rightBound);
+    }
+  }
+}
+
+let myAry = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+binarySearch(myAry, 4);
+let arr = [];
+for (let i = 0; i < 1000000; i++) {
+  arr.push(Math.floor(Math.random() * 50000));
+}
+arr.sort((a, b) => a - b);
 /*
 
 
