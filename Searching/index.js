@@ -278,9 +278,15 @@ function checkPalindromeRecursive(str, i = 0, j = str.length) {
 }
 
 function recursivePalindrome(str, i = 0, j = str.length - 1) {
+  console.log(`String is ${str}`);
+  console.log(`Comparing ${str[i]} to ${str[j]}`);
   if (j <= i) {
+    console.log(
+      `We've actually reached all of our characters, so lets get out and return true`
+    );
     return true;
   } else if (str[i] !== str[j]) {
+    console.log('They are not the same, so get out and return false.');
     return false;
   }
 
@@ -289,4 +295,59 @@ function recursivePalindrome(str, i = 0, j = str.length - 1) {
 
 console.log(recursivePalindrome('racecar'));
 console.log(recursivePalindrome('toot'));
-console.log(checkPalindromeRecursive('hello'));
+console.log(recursivePalindrome('hello'));
+
+function recursiveI(i) {
+  if (i === 100) return;
+  console.log(`i is currently ${i}`);
+  recursiveI(++i);
+}
+
+/*
+  
+  Formula to calculate a fibonacci number:
+    Need at least 2 numbers to the left of the number
+      This number is equal to the number 1 space before it, plus the number 2 spaces before it
+
+
+      [1,1,2,3,5,8,13,21,34,55]
+       1,2,3,4,5,6, 7, 8, 9,10
+
+
+*/
+
+let memo = {};
+
+function fib(n) {
+  if (memo[n]) {
+    console.log(
+      `We know what ${n} is because we already did this work! returning ${
+        memo[n]
+      }`
+    );
+    return memo[n];
+  }
+
+  if (n <= 1) {
+    console.log(`We know what the first number is! Returning 1`);
+    return 1;
+  }
+
+  console.log(`We don't know what fib(${n}) is, lets go deeper.`);
+
+  let thisNum = fib(n - 1) + fib(n - 2);
+
+  memo[n] = thisNum;
+  return memo[n];
+}
+
+let numOps = 0;
+function badFib(n) {
+  if (n <= 1) {
+    return 1;
+  }
+  numOps++;
+  return badFib(n - 1) + badFib(n - 2);
+}
+badFib(20);
+console.log(numOps);
