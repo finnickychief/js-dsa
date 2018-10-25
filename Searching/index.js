@@ -238,6 +238,32 @@ for (let i = 0; i < 1000000; i++) {
   arr.push(Math.floor(Math.random() * 50000));
 }
 arr.sort((a, b) => a - b);
+
+function binSearchIterative(arr, item) {
+  let leftBound = 0;
+  let rightBound = arr.length;
+
+  while (leftBound <= rightBound) {
+    let midPoint = Math.floor((leftBound + rightBound) / 2);
+
+    // If we found the item, return the index.
+    if (arr[midPoint] === item) {
+      return midPoint;
+    } else {
+      // Determine which direction to go
+      if (item < arr[midPoint]) {
+        // Go left
+        rightBound = midPoint - 1;
+      } else {
+        // Go right
+        leftBound = midPoint + 1;
+      }
+    }
+  }
+
+  return -1;
+}
+
 /*
 
 
