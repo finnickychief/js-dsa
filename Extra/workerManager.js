@@ -80,3 +80,64 @@ let dataArray = [
     Workers required: 17, Manager placement: Site3 
 
 */
+
+// Calculations:
+// How to find how many workers are required
+// workersRequired = Math.ceil(site.workToComplete / workerWork);
+
+// How to find how many workers can be replaced by a manager:
+// numReplaced =
+//   workersRequired - Math.ceil((site.workToComplete - managerWork) / workerWork);
+
+function manageWorkers(obj) {
+  // Step 1: Simplify and make the data we need easily accessible
+  let managerWork = obj.managerWork;
+  let workerWork = obj.workerWork;
+  let sites = obj.workSites;
+
+  // replacedWorkers/Index will keep track of the MOST amount of workers the manager can replace, and where at
+  let replacedWorkers = 0;
+  let replacedIndex = 0;
+
+  // workerArr will keep track of how many workers are required per site
+  let workerArr = sites.map((site, index) => {
+    let workersRequired = Math.ceil(site.workToComplete / workerWork);
+    let numReplaced; //
+
+    // If he can replace all the workers at this site, numReplaced = workersRequired
+    if (managerWork >= site.workToComplete) {
+      numReplaced = workersRequired;
+    } else {
+      // If he can't, find the difference if he was placed at this site.
+      numReplaced =
+        workersRequired -
+        Math.ceil((site.workToComplete - managerWork) / workerWork);
+    }
+
+    // Check if this site is where he replaces the most workers
+    if (numReplaced > replacedWorkers) {
+      replacedWorkers = numReplaced;
+      replacedIndex = index;
+    }
+
+    return workersRequired;
+  });
+
+  // Sum the total number of workers
+  let totalWorkers = workerArr.reduce((a, i) => a + i, 0);
+  totalWorkers -= replacedWorkers;
+
+  // Give output
+  console.log(
+    `Workers required: ${totalWorkers}, Manager Placement: ${
+      sites[replacedIndex].name
+    } `
+  );
+}
+
+function printResults() {
+  dataArray.forEach(day => {
+    manageWorkers(day);
+  });
+}
+printResults();
