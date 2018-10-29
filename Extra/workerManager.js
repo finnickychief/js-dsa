@@ -135,9 +135,46 @@ function manageWorkers(obj) {
   );
 }
 
+function manageWorkersForLoop(obj) {
+  let managerWork = obj.managerWork;
+  let workerWork = obj.workerWork;
+  let sites = obj.workSites;
+
+  let replacedWorkers = 0;
+  let replacedIndex = 0;
+  let totalWorkers = 0;
+
+  for (let i = 0; i < sites.length; i++) {
+    let workersRequired = Math.ceil(sites[i].workToComplete / workerWork);
+    let numReplaced;
+
+    if (managerWork >= sites[i].workToComplete) {
+      numReplaced = workersRequired;
+    } else {
+      numReplaced =
+        workersRequired -
+        Math.ceil((sites[i].workToComplete - managerWork) / workerWork);
+    }
+
+    if (numReplaced > replacedWorkers) {
+      replacedWorkers = numReplaced;
+      replacedIndex = i;
+    }
+
+    totalWorkers += workersRequired;
+  }
+  totalWorkers -= replacedWorkers;
+
+  console.log(
+    `Workers required: ${totalWorkers}, Manager Placement: ${
+      sites[replacedIndex].name
+    } `
+  );
+}
+
 function printResults() {
   dataArray.forEach(day => {
-    manageWorkers(day);
+    manageWorkersForLoop(day);
   });
 }
 printResults();
