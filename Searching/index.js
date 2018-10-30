@@ -500,7 +500,48 @@ function merge(arr1, arr2) {
   return [...newArray, ...arr1.slice(leftIndex), ...arr2.slice(rightIndex)];
 }
 
-let arr1 = [1, 3, 5, 7, 9];
-let arr2 = [2, 4, 6, 8, 10];
+// let arr1 = [1, 3, 5, 7, 9];
+// let arr2 = [2, 4, 6, 8, 10];
 
-merge(arr1, arr2);
+// merge(arr1, arr2);
+
+function mergeSort(arr) {
+  if (arr.length === 1) {
+    console.log(arr);
+    return arr;
+  }
+  console.log(arr);
+  let mid = Math.floor(arr.length / 2);
+
+  let leftHalf = arr.slice(0, mid);
+  let rightHalf = arr.slice(mid);
+
+  leftHalf = mergeSort(leftHalf);
+  rightHalf = mergeSort(rightHalf);
+
+  return merge(leftHalf, rightHalf);
+}
+
+mergeSort([4, 1, 4, 8, 5, 32, 5, 7, 9, 6, 4, 3, 2, 3, 7]);
+
+/*
+  [1,3,5,7,9]
+  [2,4,6,8,10]
+
+  
+3 1 7 8 2 5
+
+[3], [1,7], [8], [2], [5]
+[3], [1,7], [2,8], [5]
+[1,3,7], [2,8], [5]
+[1,3,7], [2,5,8]
+[1,2,3,5,7,8]
+
+[9,3,5,7,1,2,4,6]
+
+[9][3][5][7][1][2][4][6]
+
+
+
+
+*/
