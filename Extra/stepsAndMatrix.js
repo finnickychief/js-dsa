@@ -124,15 +124,26 @@ function matrix(n) {
   }
 
   // Other vars needed
-  let counter = 0;
-  let startColumn = 0,
+  let count = 1;
+  let startCol = 0,
     startRow = 0,
-    endColumn = n - 1,
+    endCol = n - 1,
     endRow = n - 1;
 
   // Try to implement the 4 repeated operations on their own outside of the problem, then make them work with the problem.
 
-  // End setup
+  while (startCol <= endCol && startRow <= endRow) {
+    count = fillRight(result, startRow, startCol, endCol, count);
+    startRow++;
+    count = fillDown(result, endCol, startRow, endRow, count);
+    endCol--;
+    count = fillLeft(result, endRow, startCol, endCol, count);
+    endRow--;
+    count = fillUp(result, startCol, startRow, endRow, count);
+    startCol++;
+  }
+
+  return result;
 }
 
 function fillRight(matrix, row, startCol, endCol, count) {
@@ -140,24 +151,28 @@ function fillRight(matrix, row, startCol, endCol, count) {
     matrix[row][col] = count;
     count++;
   }
+  return count;
 }
 function fillDown(matrix, col, startRow, endRow, count) {
   for (let row = startRow; row <= endRow; row++) {
     matrix[row][col] = count;
     count++;
   }
+  return count;
 }
 function fillLeft(matrix, row, startCol, endCol, count) {
   for (let col = endCol; col >= startCol; col--) {
     matrix[row][col] = count;
     count++;
   }
+  return count;
 }
 function fillUp(matrix, col, startRow, endRow, count) {
   for (let row = endRow; row >= startRow; row--) {
     matrix[row][col] = count;
     count++;
   }
+  return count;
 }
 
 const result = [];
@@ -168,11 +183,11 @@ for (let i = 0; i < 4; i++) {
 }
 fillRight(result, 0, 0, 3, 1);
 fillDown(result, 3, 1, 3, 5);
-fillLeft(result, 3, 0, 2, 9);
-fillUp(result, 0, 1, 2, 12);
-fillRight(result, 1, 1, 2, 16);
-fillDown(result, 2, 2, 2, 18);
-fillLeft(result, 1, 1, 1, 15);
+fillLeft(result, 3, 0, 2, 8);
+fillUp(result, 0, 1, 2, 11);
+fillRight(result, 1, 1, 2, 13);
+fillDown(result, 2, 2, 2, 15);
+fillLeft(result, 2, 1, 1, 16);
 /*
   Manually:
   // Start going right
