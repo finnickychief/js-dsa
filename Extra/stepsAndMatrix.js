@@ -135,6 +135,44 @@ function matrix(n) {
   // End setup
 }
 
+function fillRight(matrix, row, startCol, endCol, count) {
+  for (let col = startCol; col <= endCol; col++) {
+    matrix[row][col] = count;
+    count++;
+  }
+}
+function fillDown(matrix, col, startRow, endRow, count) {
+  for (let row = startRow; row <= endRow; row++) {
+    matrix[row][col] = count;
+    count++;
+  }
+}
+function fillLeft(matrix, row, startCol, endCol, count) {
+  for (let col = endCol; col >= startCol; col--) {
+    matrix[row][col] = count;
+    count++;
+  }
+}
+function fillUp(matrix, col, startRow, endRow, count) {
+  for (let row = endRow; row >= startRow; row--) {
+    matrix[row][col] = count;
+    count++;
+  }
+}
+
+const result = [];
+
+for (let i = 0; i < 4; i++) {
+  // Generate the n arrays needed to fill our matrix
+  result.push([]);
+}
+fillRight(result, 0, 0, 3, 1);
+fillDown(result, 3, 1, 3, 5);
+fillLeft(result, 3, 0, 2, 9);
+fillUp(result, 0, 1, 2, 12);
+fillRight(result, 1, 1, 2, 16);
+fillDown(result, 2, 2, 2, 18);
+fillLeft(result, 1, 1, 1, 15);
 /*
   Manually:
   // Start going right
