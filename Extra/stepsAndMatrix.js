@@ -124,6 +124,39 @@ function matrix(n) {
   }
 
   // Other vars needed
+  let counter = 0;
+  let startColumn = 0,
+    startRow = 0,
+    endColumn = n - 1,
+    endRow = n - 1;
+
+  // Try to implement the 4 repeated operations on their own outside of the problem, then make them work with the problem.
 
   // End setup
 }
+
+/*
+  Manually:
+  // Start going right
+    matrix[0][0] = 1
+    matrix[0][1] = 2
+    matrix[0][2] = 3
+    matrix[0][3] = 4
+    matrix[0][4] = 5
+  // Start going down
+    matrix[1][4] = 6
+    matrix[2][4] = 7
+    matrix[3][4] = 8
+    matrix[4][4] = 9
+    // Start going left
+    matrix[4][3] = 10
+    matrix[4][2] = 11
+    matrix[4][1] = 12
+    matrix[4][0] = 13
+    // Start going up
+    matrix[3][0] = 14
+    matrix[2][0] = 15
+    matrix[1][0] = 16
+
+
+*/
