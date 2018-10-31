@@ -67,14 +67,42 @@ class LinkedList {
     return -1;
   }
   // Get data by the index
-  get() {}
+  get(indexToFind) {
+    if (this.front === null) {
+      return null;
+    }
+
+    let runner = this.front;
+    let index = 0;
+
+    while (runner) {
+      if (index === indexToFind) {
+        return runner.data;
+      }
+      index++;
+      runner = runner.next;
+    }
+
+    return null;
+  }
   // Delete a node that holds a piece of data
-  delete() {}
+  delete(data) {}
   // Update a node by searching for data, and replacing that data with another item.
-  update() {}
+  update(data, updated) {}
 
   // Return a string representation of our list
-  toString() {}
+  toString() {
+    let output = '';
+
+    let runner = this.front;
+
+    while (runner) {
+      output += `${runner.data} -> `;
+      runner = runner.next;
+    }
+
+    return output;
+  }
 }
 
 let myLinkedList = new LinkedList();
@@ -83,8 +111,17 @@ myLinkedList.add(4);
 myLinkedList.add(6);
 myLinkedList.add(8);
 myLinkedList.add(10);
+myLinkedList.add(12);
+myLinkedList.add(14);
 // console.log(myLinkedList);
 
-console.log(myLinkedList.find(6));
-console.log(myLinkedList.find(10));
-console.log(myLinkedList.find(3));
+// console.log(myLinkedList.find(6));
+// console.log(myLinkedList.find(10));
+// console.log(myLinkedList.find(3));
+
+console.log(myLinkedList.get(0));
+console.log(myLinkedList.get(2));
+console.log(myLinkedList.get(4));
+console.log(myLinkedList.get(800));
+
+console.log(myLinkedList.toString());
