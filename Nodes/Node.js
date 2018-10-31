@@ -128,6 +128,32 @@ class LinkedList {
     return false;
   }
 
+  fromLast(index) {
+    let slowRunner = this.front;
+    let fastRunner = this.front;
+    while (index >= 0) {
+      fastRunner = fastRunner.next;
+      index--;
+    }
+    while (fastRunner) {
+      fastRunner = fastRunner.next;
+      slowRunner = slowRunner.next;
+    }
+    return slowRunner.data;
+  }
+
+  fromLast2(index) {
+    let runner = this.front;
+    // Count the length.
+    let length = -1;
+    while (runner) {
+      length++;
+      runner = runner.next;
+    }
+    // Find the item that is 'index' spaces behind the end
+    return this.get(length - index);
+  }
+
   // Return a string representation of our list
   toString() {
     let output = '';
@@ -178,13 +204,39 @@ console.log(myLinkedList.toString());
 // spaces from the last node in the list. Assume that n will always
 // be less than the length of the list.
 // --- Examples
-//    const list = new LinkedList();
-//    list.add('a');
-//    list.add('b');
-//    list.add('c');
-//    list.add('d');
-//    list.add('e');
-//    list.add('f');
-//    list.fromLast(2).data // 'd'
-//    list.fromLast(5).data // 'a'
-//    list.fromLast(3).data // 'c'
+const list = new LinkedList();
+list.add('a');
+list.add('b');
+list.add('c');
+list.add('d');
+list.add('e');
+list.add('f');
+
+console.log(list.fromLast(2)); // 'd'
+console.log(list.fromLast(5)); // 'a'
+console.log(list.fromLast(3)); // 'c'
+
+// Add this function to your class declaration:
+
+/*
+  Remove Duplicates:
+    Given a sorted linked list, remove any duplicate pieces of data so that only one item remains for each value.
+
+*/
+const list2 = new LinkedList();
+
+list2.add(1);
+list2.add(1);
+list2.add(1);
+list2.add(3);
+list2.add(4);
+list2.add(4);
+list2.add(5);
+list2.add(7);
+list2.add(7);
+list2.add(7);
+list2.add(7);
+list2.add(8);
+list2.add(8);
+// List is currently 1->1->1->3->4->4->5->7->7->7->7->8->8
+list2.removeDuplicates(); // The list should be 1 -> 3 -> 4 -> 5 -> 7 -> 8
