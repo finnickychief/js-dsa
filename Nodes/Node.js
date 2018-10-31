@@ -86,9 +86,47 @@ class LinkedList {
     return null;
   }
   // Delete a node that holds a piece of data
-  delete(data) {}
+  delete(data) {
+    if (this.front === null) {
+      return false;
+    }
+    // Remove the front if it holds the data
+    if (this.front.data === data) {
+      this.front = this.front.next;
+      return true;
+    }
+
+    let runner = this.front;
+    // Traverse the list
+    while (runner.next) {
+      // If the next data has the piece we want, skip that node to 'delete' it
+      if (runner.next.data === data) {
+        runner.next = runner.next.next;
+        return true;
+      }
+      runner = runner.next;
+    }
+
+    return false;
+  }
   // Update a node by searching for data, and replacing that data with another item.
-  update(data, updated) {}
+  update(data, updated) {
+    if (this.front === null) {
+      return false;
+    }
+
+    let runner = this.front;
+
+    while (runner) {
+      // If we've found the item we're looking for, update it and get out of the function
+      if (runner.data === data) {
+        runner.data = updated;
+        return true;
+      }
+      runner = runner.next;
+    }
+    return false;
+  }
 
   // Return a string representation of our list
   toString() {
@@ -119,9 +157,34 @@ myLinkedList.add(14);
 // console.log(myLinkedList.find(10));
 // console.log(myLinkedList.find(3));
 
-console.log(myLinkedList.get(0));
-console.log(myLinkedList.get(2));
-console.log(myLinkedList.get(4));
-console.log(myLinkedList.get(800));
+// console.log(myLinkedList.get(0));
+// console.log(myLinkedList.get(2));
+// console.log(myLinkedList.get(4));
+// console.log(myLinkedList.get(800));
+
+// myLinkedList.delete(6);
+// myLinkedList.delete(8);
+// myLinkedList.delete(2);
+
+console.log(myLinkedList.update(4, 7));
+console.log(myLinkedList.update(6, 8));
+console.log(myLinkedList.update(20, 0));
+console.log(myLinkedList.update(8, 6));
 
 console.log(myLinkedList.toString());
+
+// --- Directions
+// Given a linked list and integer n, return the element n
+// spaces from the last node in the list. Assume that n will always
+// be less than the length of the list.
+// --- Examples
+//    const list = new LinkedList();
+//    list.add('a');
+//    list.add('b');
+//    list.add('c');
+//    list.add('d');
+//    list.add('e');
+//    list.add('f');
+//    list.fromLast(2).data // 'd'
+//    list.fromLast(5).data // 'a'
+//    list.fromLast(3).data // 'c'
