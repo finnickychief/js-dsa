@@ -154,6 +154,48 @@ class LinkedList {
     return this.get(length - index);
   }
 
+  removeDuplicates() {
+    let runner = this.front;
+    while (runner) {
+      while (runner.next && runner.next.data === runner.data) {
+        runner.next = runner.next.next;
+      }
+      runner = runner.next;
+    }
+  }
+
+  // Find how many items are within our linked list.
+  getLength() {
+    let length = 0;
+
+    let runner = this.front;
+    while (runner) {
+      runner = runner.next;
+      length++;
+    }
+
+    return length;
+  }
+
+  findMiddle2() {
+    let length = this.getLength();
+
+    return this.get(Math.floor((length - 1) / 2));
+  }
+
+  findMiddle() {
+    // Declare two runners
+    let slowRunner = this.front;
+    let fastRunner = this.front;
+    // To check .next.next you must have a .next, so check it first.
+    // Otherwise, you get an error for invalid property access
+    while (fastRunner.next && fastRunner.next.next) {
+      slowRunner = slowRunner.next;
+      fastRunner = fastRunner.next.next;
+    }
+    return slowRunner.data;
+  }
+
   // Return a string representation of our list
   toString() {
     let output = '';
@@ -239,4 +281,12 @@ list2.add(7);
 list2.add(8);
 list2.add(8);
 // List is currently 1->1->1->3->4->4->5->7->7->7->7->8->8
-list2.removeDuplicates(); // The list should be 1 -> 3 -> 4 -> 5 -> 7 -> 8
+console.log(list2.toString());
+
+// list2.removeDuplicates(); // The list should be 1 -> 3 -> 4 -> 5 -> 7 -> 8
+
+// console.log(list2.toString());
+
+// Find the item halfway through a linked list
+// List is currently 1->1->1->3->4->4->5->7->7->7->7->8->8
+console.log(list2.findMiddle()); // Should return 5
