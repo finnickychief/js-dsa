@@ -150,6 +150,24 @@ class BinaryTree {
   }
 
   // Find the depth of the tree. This will be where the item furthest down in the tree occurs.
+  /*
+    Algorithm:
+      Find depth of this item
+      Find depth of left sub-tree
+      Find depth of right sub-tree
+      Return max depth of the left and right
+  */
+
+  findMaxDepth(node = this.root, depth = 0) {
+    if (!node.left && !node.right) {
+      return depth;
+    }
+    depth++;
+    let leftDepth = this.findMaxDepth(node.left, depth);
+    let rightDepth = this.findMaxDepth(node.right, depth);
+
+    return Math.max(leftDepth, rightDepth);
+  }
 }
 
 let tree = new BinaryTree();
@@ -172,3 +190,5 @@ console.log(tree.findDepthOfItem(6));
 console.log(tree.findDepthOfItem(3));
 console.log(tree.findDepthOfItem(9));
 console.log(tree.findDepthOfItem(1300000000));
+
+console.log(tree.findMaxDepth());
