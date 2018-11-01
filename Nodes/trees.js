@@ -93,7 +93,7 @@ class BinaryTree {
     return false;
   }
 
-  find(node = this.root, data) {
+  find(data, node = this.root) {
     if (!node) {
       return false;
     }
@@ -101,9 +101,9 @@ class BinaryTree {
       return true;
     }
     if (data < node.data) {
-      return this.find(node.left, data);
+      return this.find(data, node.left);
     } else {
-      return this.find(node.right, data);
+      return this.find(data, node.right);
     }
   }
 }
