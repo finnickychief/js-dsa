@@ -67,6 +67,45 @@ class BinaryTree {
       console.log(node.data);
     }
   }
+
+  // Implement a find function
+  /*
+  This function should search through the tree for a specific value, and return true if it finds it and false if it does not exist
+*/
+
+  find2(data) {
+    if (!this.root) {
+      return false;
+    }
+
+    let currNode = this.root;
+
+    while (currNode) {
+      if (currNode.data === data) {
+        return true;
+      }
+      if (data < currNode.data) {
+        currNode = currNode.left; // If the data is less than the current node, go left
+      } else {
+        currNode = currNode.right; // otherwise, go right
+      }
+    }
+    return false;
+  }
+
+  find(node = this.root, data) {
+    if (!node) {
+      return false;
+    }
+    if (data === node.data) {
+      return true;
+    }
+    if (data < node.data) {
+      return this.find(node.left, data);
+    } else {
+      return this.find(node.right, data);
+    }
+  }
 }
 
 let tree = new BinaryTree();
@@ -79,23 +118,8 @@ tree.add(3);
 tree.add(1);
 tree.add(9);
 
-tree.postOrder();
-// Pseudocode for traversals:
-/*
-  Pre-order:
-    Print out the current node
-    Print out the left tree
-    Print out the right tree*/
-
-/*In-order:
-    Print out the left tree
-    Print out the current node
-    Print out the right tree
-
-  Post-order:
-    Print out the left tree
-    Print out the right tree
-    Print out the current node
-
-
-*/
+console.log(tree.find(2));
+console.log(tree.find(3));
+console.log(tree.find(7));
+console.log(tree.find(9));
+console.log(tree.find(-2));
