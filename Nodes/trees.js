@@ -106,6 +106,50 @@ class BinaryTree {
       return this.find(data, node.right);
     }
   }
+
+  /*
+    Write a function that searches for an item, and tells you at what depth it occurs first within the tree.
+
+    findDepthOfItem(data){}
+  */
+
+  findDepthOfItem2(data) {
+    if (!this.root) {
+      return -1;
+    }
+
+    let currNode = this.root;
+    let depth = 0;
+    while (currNode) {
+      if (currNode.data === data) {
+        return depth;
+      }
+      depth++;
+      if (data < currNode.data) {
+        currNode = currNode.left; // If the data is less than the current node, go left
+      } else {
+        currNode = currNode.right; // otherwise, go right
+      }
+    }
+    return -1;
+  }
+
+  findDepthOfItem(data, node = this.root, depth = 0) {
+    if (!node) {
+      return -1;
+    }
+    if (data === node.data) {
+      return depth;
+    }
+    depth++;
+    if (data < node.data) {
+      return this.findDepthOfItem(data, node.left, depth);
+    } else {
+      return this.findDepthOfItem(data, node.right, depth);
+    }
+  }
+
+  // Find the depth of the tree. This will be where the item furthest down in the tree occurs.
 }
 
 let tree = new BinaryTree();
@@ -118,8 +162,13 @@ tree.add(3);
 tree.add(1);
 tree.add(9);
 
-console.log(tree.find(2));
-console.log(tree.find(3));
-console.log(tree.find(7));
-console.log(tree.find(9));
-console.log(tree.find(-2));
+// console.log(tree.find(2));
+// console.log(tree.find(3));
+// console.log(tree.find(7));
+// console.log(tree.find(9));
+// console.log(tree.find(-2));
+
+console.log(tree.findDepthOfItem(6));
+console.log(tree.findDepthOfItem(3));
+console.log(tree.findDepthOfItem(9));
+console.log(tree.findDepthOfItem(1300000000));
