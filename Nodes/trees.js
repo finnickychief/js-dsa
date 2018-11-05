@@ -215,6 +215,36 @@ class BinaryTree {
     // add the right half to tree
     this.buildBalancedTree(arr, midPoint + 1, rightBound);
   }
+
+  validateBSTPartial(node = this.root) {
+    if (!node) {
+      return true;
+    }
+
+    if (node.left && node.data < node.left.data) {
+      return false;
+    }
+    if (node.right && node.data > node.right.data) {
+      return false;
+    }
+    return this.validateBST(node.left) && this.validateBST(node.right);
+  }
+
+  validateBST(node = this.root, low = -Infinity, high = Infinity) {
+    // Make sure the current node fits in the boundaries of our tree so far
+    if (node.data < low || node.data > high) {
+      return false;
+    }
+    // If the current node fits our boundaries, go left
+    if (node.left && !this.validateBST(node.left, low, node.data)) {
+      return false;
+    }
+    // If the left tree is good, go right.
+    if (node.right && !this.validateBST(node.right, node.data, high)) {
+      return false;
+    }
+    return true;
+  }
 }
 
 let tree = new BinaryTree();
@@ -287,30 +317,31 @@ newTree2.preorder();
   Create a function that validates a binary search tree. Take in a tree as a parameter and iterate over all of the nodes and if any of the nodes are in an invalid position, return false. Otherwise, return true.
 
 */
-validateBST(node=this.root){
+// Put this method within the class for BinaryTree
 
-}
+// Code below is on github. Copy & paste it as necessary
 
 let testTree = new BinaryTree();
 testTree.root = new Node(5);
 testTree.root.left = new Node(8);
 testTree.root.right = new Node(4);
-console.log(testTree.validateBST()) // Should print false
+console.log(testTree.validateBST()); // Should print false
 
 let testTree2 = new BinaryTree();
 testTree2.root = new Node(5);
 testTree2.root.left = new Node(4);
 testTree2.root.right = new Node(8);
-console.log(testTree2.validateBST()) // Should print true
-
+console.log(testTree2.validateBST()); // Should print true
 
 let testTree3 = new BinaryTree();
 testTree3.root = new Node(4);
 testTree3.root.right = new Node(5);
 testTree3.root.right.right = new Node(8);
-console.log(testTree3.validateBST()) // Should print true
-
+console.log(testTree3.validateBST()); // Should print true
+// console.log(testTree3.buildArray());
 testTree3.root.right.left = new Node(3);
-console.log(testTree3.validateBST()) // Should print false
+// debugger;
+console.log(testTree3.validateBST()); // Should print false
 
-
+// let treeArr = testTree3.buildArray(); // Give us the inOrder array
+// console.log(treeArr); // After this, check to see if its in ascending order. If it's not, it's not a valid bst
