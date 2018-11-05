@@ -7,8 +7,12 @@ class Node {
 }
 
 class BinaryTree {
-  constructor() {
+  constructor(arr = null) {
     this.root = null;
+
+    if (arr) {
+      this.buildBalancedTree(arr);
+    }
   }
 
   add(value) {
@@ -194,7 +198,7 @@ class BinaryTree {
 
   buildBalancedTree(arr, leftBound = 0, rightBound = arr.length - 1) {
     let midPoint = Math.floor((leftBound + rightBound) / 2);
-    debugger;
+    // debugger;
     console.log(
       `Current item is: ${
         arr[midPoint]
@@ -266,6 +270,47 @@ console.log(tree2.buildArray());
 
 let sortedArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-let newTree = new BinaryTree();
-newTree.buildBalancedTree(sortedArr);
-newTree.preorder();
+let newTree = new BinaryTree(sortedArr); // Alternative constructor for building a balanced tree in 1 step
+// let newTree = new BinaryTree();
+// newTree.buildBalancedTree(sortedArr);
+// newTree.preorder();
+
+let unsortedArr = [1, 2, 5, 7, 3, 1, 4, 8, 7, 9];
+
+let newTree2 = new BinaryTree(unsortedArr);
+// newTree2.buildBalancedTree(unsortedArr);
+// console.log(newTree2.buildArray());
+
+newTree2.preorder();
+
+/*
+  Create a function that validates a binary search tree. Take in a tree as a parameter and iterate over all of the nodes and if any of the nodes are in an invalid position, return false. Otherwise, return true.
+
+*/
+validateBST(node=this.root){
+
+}
+
+let testTree = new BinaryTree();
+testTree.root = new Node(5);
+testTree.root.left = new Node(8);
+testTree.root.right = new Node(4);
+console.log(testTree.validateBST()) // Should print false
+
+let testTree2 = new BinaryTree();
+testTree2.root = new Node(5);
+testTree2.root.left = new Node(4);
+testTree2.root.right = new Node(8);
+console.log(testTree2.validateBST()) // Should print true
+
+
+let testTree3 = new BinaryTree();
+testTree3.root = new Node(4);
+testTree3.root.right = new Node(5);
+testTree3.root.right.right = new Node(8);
+console.log(testTree3.validateBST()) // Should print true
+
+testTree3.root.right.left = new Node(3);
+console.log(testTree3.validateBST()) // Should print false
+
+
