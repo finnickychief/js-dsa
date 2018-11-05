@@ -168,6 +168,49 @@ class BinaryTree {
 
     return Math.max(leftDepth, rightDepth);
   }
+
+  // Step 1:
+  /*
+  Write a function that performs an in-order traversal and builds a sorted array using a binary search tree.
+*/
+  buildArray() {
+    // tree.buildArray();
+    let result;
+    result = this.buildAryUtil(this.root, []);
+    return result;
+  }
+  buildAryUtil(node, ary) {
+    // buildAry(node = this.root,ary=[]){ // Version without util
+
+    if (node) {
+      // Add left tree to array
+      this.buildAryUtil(node.left, ary);
+      ary.push(node.data); // Add current item to the array
+      // Add right tree to the array
+      this.buildAryUtil(node.right, ary);
+      return ary;
+    }
+  }
+
+  buildBalancedTree(arr, leftBound = 0, rightBound = arr.length - 1) {
+    let midPoint = Math.floor((leftBound + rightBound) / 2);
+    debugger;
+    console.log(
+      `Current item is: ${
+        arr[midPoint]
+      }, left boundary is ${leftBound}, right boundary is ${rightBound}`
+    );
+    if (rightBound < leftBound) {
+      return -1;
+    }
+
+    this.add(arr[midPoint]); // Used to be return index, now should be add item to tree
+
+    // add the left half to tree
+    this.buildBalancedTree(arr, leftBound, midPoint - 1);
+    // add the right half to tree
+    this.buildBalancedTree(arr, midPoint + 1, rightBound);
+  }
 }
 
 let tree = new BinaryTree();
@@ -192,3 +235,37 @@ console.log(tree.findDepthOfItem(9));
 console.log(tree.findDepthOfItem(1300000000));
 
 console.log(tree.findMaxDepth());
+
+// Rebuild a BST
+
+// Step 2:
+/*
+  Write a function that rebuilds a balanced binary search tree using a sorted array.
+*/
+
+// Modified binary search algorithm:
+// Step 1: Add current middle item to the tree - Average of the 2 indexes
+// Step 2: Visit the left half of the array - use 2 indexes. left will stay left, right will be midPoint - 1
+// Step 3: Visit the right half of the array - left will be midPoint + 1, right will stay right
+
+console.log(tree.buildArray());
+
+let tree2 = new BinaryTree();
+tree2.add(8);
+tree2.add(3);
+tree2.add(1);
+tree2.add(2);
+tree2.add(8);
+tree2.add(9);
+tree2.add(23);
+tree2.add(11);
+tree2.add(-2);
+tree2.add(-3);
+
+console.log(tree2.buildArray());
+
+let sortedArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+let newTree = new BinaryTree();
+newTree.buildBalancedTree(sortedArr);
+newTree.preorder();
